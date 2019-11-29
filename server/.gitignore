@@ -1,0 +1,7 @@
+# Commonly ignored Node.js files
+node_modules/
+npm-debug.log
+.npm/
+
+# ignore api keys file
+keys.js
