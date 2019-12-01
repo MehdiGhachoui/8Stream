@@ -33,10 +33,10 @@ app.use(bodyParser.urlencoded({
 app.use('/auth' , require('./Routes/user'));
 app.use('/home'  , auth  , require('./Routes/home')); 
 app.use('/album' , auth  , require('./Routes/album')); 
-// app.use('/user'  , auth  , require('./Routes/user'));
+
 
 
 // Server 
-app.listen(3000 , function(req , res){
-    console.log("running on port 3000...");
+app.listen(4000 , function(req , res){
+    console.log("running on port 4000...");
 })

@@ -4,15 +4,30 @@ const jwt = require('jsonwebtoken');
 const keys = require('../Config/keys');
 
 
+
+module.exports.getUser =  function(req , res){
+
+    console.log(req.user.id)
+    User.findById(req.user.id , function(err , user){
+
+        if(err) return res.status(500).json({msg : "Server error"});
+        else  res.status(200).json(user);
+        
+    }).select('-password');
+    
+}
+
+
 module.exports.regesterUser = function(req , res){
 
     console.log(req.body)
 
     // CHECKING SUBMITED DATA 
-    const { userName , firstName, lastName, email, password, password2 } = req.body;
+    
+    const { userName , email, password, password2 } = req.body;
     let errors = [];
   
-    if (!userName || !firstName || !lastName || !email || !password || !password2) {
+    if (!userName || !email || !password || !password2) {
       errors.push({ msg: 'Please enter all fields' });
     }
   
@@ -32,18 +47,18 @@ module.exports.regesterUser = function(req , res){
     else{
 
         console.log(req.body)
-        let {userName , firstName , lastName ,  email ,  password} = req.body ;
+        let {userName ,  email ,  password} = req.body ;
 
         // console.log(email); 
 
         // CHECKING IF THE USER EXIST
-        User.find({email: email} , function(err , user){
+        User.findOne({email: email} , function(err , user){
 
             if(err) return res.status(401).json({msg : "something went wrong"})
 
-            if(!user){ 
+            if(user){ 
                 console.log(user) 
-                return res.json.status(401).json({msg : "user already exist"})
+                return res.status(401).json({msg : "user already exist"})
                 
             }
             else{
@@ -58,8 +73,6 @@ module.exports.regesterUser = function(req , res){
                 // Create a User
                 user = new User({
                     userName , 
-                    firstName,
-                    lastName , 
                     email , 
                     password 
                     // avatar
@@ -85,7 +98,7 @@ module.exports.regesterUser = function(req , res){
                                     jwt.sign(payload , keys.jwtSecret , {expiresIn : 3600000} , function(err , token){
                     
                                         if(err) return res.status(400).json({msg : 'token error'})
-                                        else return res.json(token)
+                                        else return res.json({token})
 
                                     })
                                 }
@@ -152,7 +165,7 @@ module.exports.loginUser = function(req , res){
                         jwt.sign(payload , keys.jwtSecret , {expiresIn : 3600} , function(err , token){
                     
                             if(err) return res.status(400).json({msg : 'token error'})
-                            else return res.json(token)
+                            else return res.json({token})
 
                         })
                     }

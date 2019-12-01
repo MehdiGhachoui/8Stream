@@ -1,11 +1,13 @@
 import React  , {Component} from 'react';
-import {BrowserRouter , Route , Redirect , Switch} from 'react-router-dom';
+import {BrowserRouter , Route , Redirect , Switch } from 'react-router-dom';
+
+
 import './Auth.css';
-
 import Signin from './Sign(In-Up)/Signin'
-import Signup from './Sign(In-Up)/Signup'
+import {Signup} from './Sign(In-Up)/Signup'
 
-export default class Auth extends Component {
+export  class Auth extends Component {
+
 
     render() {
         return(
@@ -17,8 +19,8 @@ export default class Auth extends Component {
 
                         <BrowserRouter>
                             <Switch>
-                                <Route  exact path = '/signin' component={Signin}/>
-                                <Route path = '/signup' component={Signup}/>
+                                <Route   path = '/signin' component={Signin}/>
+                                <Route path = '/signup' component={Signup} />
                                 <Redirect exact from="/" to="/signin" />
                             </Switch>
                         </BrowserRouter>
@@ -42,3 +44,7 @@ export default class Auth extends Component {
             )
     }
 }
+
+
+
+  

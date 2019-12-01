@@ -1,16 +1,31 @@
-import React from 'react';
+import React  , {Component} from 'react';
 import './App.css';
-import Auth from './authentication/Auth'
+import {Auth} from './components/authentication/Auth'
+import {loadUser} from './actions/auth';
+import {dispatch} from './store'
+import authToken from './middleware/authToken'
 
 
-function App() {
-  return (
-    <div className="App">
-
-      <Auth/>
-      
-    </div>
-  );
+if (localStorage.token) {
+  authToken(localStorage.token);
 }
 
-export default App;
+export default class App extends Component {
+
+
+  componentDidMount(){
+
+    console.log('hello')
+    dispatch(loadUser())
+  }
+
+  render(){
+      return (
+        <div className="App">
+
+          <Auth/>
+          
+        </div>
+      );
+    }
+}
