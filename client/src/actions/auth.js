@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {REGISTER_SUCCESS , REGISTER_FAIL , USER_LOADED , AUTH_ERROR} from './action-types';
+import {REGISTER_SUCCESS , REGISTER_FAIL ,LOGIN_SUCCESS , LOGIN_FAIL , USER_LOADED , AUTH_ERROR } from './action-types';
 import authToken from '../middleware/authToken';
 
 
 //LOAD USER INFO
 export const loadUser = () =>async dispatch =>{
 
-    console.log(localStorage.token);
+    
 
     if(localStorage.token){
         authToken(localStorage.token);
@@ -33,7 +33,7 @@ export const loadUser = () =>async dispatch =>{
 // REGISTER USER :
 export const register = ({userName , email , password , password2}) => async dispatch => {
 
-    console.log({userName , email , password , password2})
+    
     const config = {
         headers : {
             "Content-Type" : "application/json"
@@ -45,12 +45,13 @@ export const register = ({userName , email , password , password2}) => async dis
 
     try {
         const res = await axios.post('http://localhost:4000/auth/register' ,body , config  ); 
-        console.log(res.data)
+        
 
         dispatch({
             type : REGISTER_SUCCESS,
             payload : res.data 
         });
+        
         
 
     }catch(err){
@@ -64,6 +65,40 @@ export const register = ({userName , email , password , password2}) => async dis
 
 }
 
+
+// LOGIN USER :
+export const login = (email , password ) => async dispatch => {
+
+    const config = {
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    }
+
+
+    const body = JSON.stringify({ email , password });
+    
+    
+    try {
+        const res = await axios.post('http://localhost:4000/auth/login' ,body , config  ); 
+        
+
+        dispatch({
+            type : LOGIN_SUCCESS,
+            payload : res.data 
+        });
+        
+
+    }catch(err){
+
+        dispatch({
+            type : LOGIN_FAIL
+        });
+
+    }
+
+
+}
 
 
 

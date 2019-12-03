@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Keys = require('./Config/keys')
 const auth = require('./Middelware/auth')
+const  cors = require('cors')
 const app = express() ; 
 
 
@@ -20,6 +21,7 @@ db.on('open' , function(){
 
 })
 
+
 // body-parser :
 app.use(bodyParser.json({
     extended: false
@@ -28,6 +30,7 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
+app.use(cors())
 
 // Routes  : 
 app.use('/auth' , require('./Routes/user'));

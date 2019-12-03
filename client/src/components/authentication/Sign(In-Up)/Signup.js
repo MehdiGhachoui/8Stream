@@ -1,8 +1,8 @@
 import React , {Component , Fragment  } from 'react' ; 
-import {connect} from 'react-redux'
-import {Link , withRouter} from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import {register} from '../../../actions/auth';
 import {dispatch} from '../../../store';
+import islogedIn from '../../../middleware/isLoged'
 
 import '../Auth.css'
 
@@ -11,28 +11,23 @@ import '../Auth.css'
 export  class Signup extends Component {
     
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             userName  : '',
             email     : '',
             password  : '' , 
-            password2 : ''
+            password2 : '' , 
         }
     }
 
-   
-  
-
-    handleReset = () => {
-        this.setState({
-            userName  : '',
-            email     : '',
-            password  : '' , 
-            password2 : ''
-        });
-      };
+    componentDidMount() {
+        if (islogedIn()) {
+          this.props.history.push('/home');
+        }
+    }
+    
 
     handleChange = (e) =>{
     
@@ -48,15 +43,15 @@ export  class Signup extends Component {
         e.preventDefault();
     
         let {userName , email , password , password2} = this.state
-        console.log(this.props)
         dispatch(register({userName , email , password , password2}))
+        this.props.history.push('/home');
+        
         
     
 
     }
 
     render(){
-
 
         return(
             <Fragment>
@@ -88,8 +83,3 @@ export  class Signup extends Component {
 }
 
 
-
-  
-
-
-export default connect()(withRouter(Signup));

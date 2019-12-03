@@ -20,7 +20,7 @@ module.exports.getUser =  function(req , res){
 
 module.exports.regesterUser = function(req , res){
 
-    console.log(req.body)
+    
 
     // CHECKING SUBMITED DATA 
     
@@ -46,7 +46,6 @@ module.exports.regesterUser = function(req , res){
    
     else{
 
-        console.log(req.body)
         let {userName ,  email ,  password} = req.body ;
 
         // console.log(email); 
@@ -54,10 +53,10 @@ module.exports.regesterUser = function(req , res){
         // CHECKING IF THE USER EXIST
         User.findOne({email: email} , function(err , user){
 
-            if(err) return res.status(401).json({msg : "something went wrong"})
+            if(err) return res.status(500).json({msg : "Server error"})
 
             if(user){ 
-                console.log(user) 
+                console.log("error :" , user) 
                 return res.status(401).json({msg : "user already exist"})
                 
             }
@@ -132,7 +131,7 @@ module.exports.loginUser = function(req , res){
 
     else{
 
-        let { email , password} = req.body ;
+        
 
         
         // CHECKING IF THE USER EXIST :
@@ -148,30 +147,20 @@ module.exports.loginUser = function(req , res){
 
             else{
 
-                // HACHING  THE PASSWORD
-                bcrypt.compare(password , user.password , function(err , isMatch){
+               // CREATING THE WEBTOKEN :
+                console.log(user) 
+                let payload = { user : { id : user.id } }
+                jwt.sign(payload , keys.jwtSecret , {expiresIn : 3600} , function(err , token){
                     
-                    if(err) res.status(401).json({msg : 'something went wrong'})
-                    
-                    if(!isMatch){
-                        res.status(401).json({msg : 'password is invalid'})
-                    }
+                    if(err) return res.status(400).json({msg : 'token error'})
+                    else return res.json({token})
 
-                    else{
-
-                        // CREATING THE WEBTOKEN :
-                        console.log(user) 
-                        let payload = { user : { id : user.id } }
-                        jwt.sign(payload , keys.jwtSecret , {expiresIn : 3600} , function(err , token){
-                    
-                            if(err) return res.status(400).json({msg : 'token error'})
-                            else return res.json({token})
-
-                        })
-                    }
                 })
-
+                    
             }
+                
+
+        
         }) 
 
     }

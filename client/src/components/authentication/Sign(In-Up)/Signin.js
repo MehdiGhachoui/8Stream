@@ -1,22 +1,70 @@
 import React , {Component , Fragment} from 'react' ; 
-import {Link} from 'react-router-dom';
+import {Link , Redirect} from 'react-router-dom';
+import {login} from '../../../actions/auth';
+import {dispatch} from '../../../store';
+import islogedIn from '../../../middleware/isLoged'
 import '../Auth.css';
 
 
-export default class Signin extends Component {
+export  class Signin extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email     : '',
+            password  : '' ,
+        };
+
+
+        
+    }
+
+
+    componentDidMount() {
+        if (islogedIn()) {
+          this.props.history.push('/home');
+        }
+    }
+    
+    handleChange = (e) =>{
+
+        this.setState({[e.target.name] : e.target.value});
+    }
+
+    
+
+    handleSubmit = (e) =>{
+ 
+        e.preventDefault();
+
+        let {email , password } = this.state
+        dispatch(login( email , password ))
+        this.props.history.push('/home');
+
+        
+    }
+
 
     render(){
+
+        console.log(this.state)
+        
+        if(islogedIn()){
+            return <Redirect to = '/home'/>
+        }        
+
 
         return(
 
             <Fragment>
-                <form form id="loginForm">
+                <form onSubmit = {this.handleSubmit} id="loginForm">
 
                     <h2>Login to your account</h2>
 
-                    <input id="loginUsername" name="loginUsername" type="text" placeholder="Username" required/>
+                    <input id="email" name="email" type="email" onChange = {this.handleChange} placeholder="Email"  required/>
 
-                    <input id="loginPassword" name="loginPassword" type="password" placeholder="Password" required/>
+                    <input id="loginPassword" name="password" onChange = {this.handleChange} type="password" placeholder="Password" required/>
                     
                     <button type="submit" name="loginButton">LOG IN</button>
                 </form>
@@ -33,3 +81,5 @@ export default class Signin extends Component {
         )
     }
 }
+
+
