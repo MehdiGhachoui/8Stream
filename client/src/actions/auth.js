@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {REGISTER_SUCCESS , REGISTER_FAIL ,LOGIN_SUCCESS , LOGIN_FAIL , USER_LOADED , AUTH_ERROR } from './action-types';
+import {REGISTER_SUCCESS , REGISTER_FAIL ,LOGIN_SUCCESS , LOGIN_FAIL , USER_LOADED , AUTH_ERROR , LOGOUT} from './action-types';
 import authToken from '../middleware/authToken';
 
 
@@ -20,6 +20,8 @@ export const loadUser = () =>async dispatch =>{
             payload : res.data
         })
 
+        
+
     } catch (error) {
 
         dispatch({
@@ -31,7 +33,7 @@ export const loadUser = () =>async dispatch =>{
 
 
 // REGISTER USER :
-export const register = ({userName , email , password , password2}) => async dispatch => {
+export const register = ({userName , email , password , password2} , history ) => async dispatch => {
 
     
     const config = {
@@ -51,6 +53,9 @@ export const register = ({userName , email , password , password2}) => async dis
             type : REGISTER_SUCCESS,
             payload : res.data 
         });
+
+        dispatch(loadUser())
+        history.push('/home')
         
         
 
@@ -67,7 +72,7 @@ export const register = ({userName , email , password , password2}) => async dis
 
 
 // LOGIN USER :
-export const login = (email , password ) => async dispatch => {
+export const login = ({email , password } , history ) => async dispatch => {
 
     const config = {
         headers : {
@@ -87,7 +92,9 @@ export const login = (email , password ) => async dispatch => {
             type : LOGIN_SUCCESS,
             payload : res.data 
         });
-        
+
+        dispatch(loadUser())
+        history.push('/home')
 
     }catch(err){
 
@@ -101,4 +108,13 @@ export const login = (email , password ) => async dispatch => {
 }
 
 
+// LOGOUT USER : 
+
+export const logout = () => async dispatch => {
+
+    dispatch({
+            type : LOGOUT
+    });
+
+}
 

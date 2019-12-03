@@ -1,9 +1,10 @@
-import React  , {Component} from 'react';
+import React  , {Component , Fragment} from 'react';
+import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import './App.css';
-import {Auth} from './components/authentication/Auth'
 import {loadUser} from './actions/auth';
 import {dispatch} from './store'
 import authToken from './middleware/authToken'
+import Routes from './components/routes/Routes'
 
 
 if (localStorage.token) {
@@ -19,11 +20,18 @@ export default class App extends Component {
 
   render(){
       return (
-        <div className="App">
-
-          <Auth/>
           
-        </div>
-      );
+          <Fragment>
+              <Router>
+                <Switch>
+                  
+                  <Route  component={Routes} />
+                  
+                </Switch>
+              </Router>
+          </Fragment>
+    
+          
+      )
     }
 }
