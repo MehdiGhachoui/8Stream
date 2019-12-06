@@ -11,8 +11,8 @@ module.exports.getAlbums = async  function(req , res) {
         if (err) return res.status(400).json({errors : err});
         else return res.status(200).json(data);
         
-    }).populate({path :'artist' , select  : 'name  -_id', model: Artist })
-      .populate({path :'song'   , select  : 'title -_id', model: Song } )
+    }).populate({path :'artist' , select  : ' ', model: Artist })
+      .populate({path :'song'   , select  : ' ', model: Song } )
 
 }
 
@@ -23,16 +23,21 @@ module.exports.albumInfo = function(req , res){
         if (err) return res.status(400).json({errors : err});
         else return res.status(200).json(data);
 
-    });
+    }).populate({path :'song'   , select  : ' ', model: Song } )
+      .populate({path :'artist' , select  : ' ', model: Artist })
 
 }
 
 
 module.exports.searchForAlbums = function(req , res){
 
-    Album.find({title : req.params.title}, function(err , data){
+    
+    Album.findOne({title :req.params.name }, function(err , data){
         
-        if (err) return res.status(400).json({errors : err});
+        if (err) return res.status(500).json({errors : err});
+
+        if(!data) return res.status(400).json({errors : "search input is invalid"});
+
         else return res.status(200).json(data);
 
     });

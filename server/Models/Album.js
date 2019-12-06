@@ -4,8 +4,8 @@ const AlbumSchema = mongoose.Schema({
 
     title      : { type : String , required : true }, 
     artist     : { type : mongoose.Schema.Types.ObjectId, ref : 'Artist' }, 
-    songs      : { type : mongoose.Schema.Types.ObjectId, ref : 'Song' },
-    artPath    : { type : String , required : true}, 
+    song      : [{ type : mongoose.Schema.Types.ObjectId, ref : 'Song' }],
+    artwork    : { type : String , required : true}, 
 
 });
 

@@ -48,8 +48,6 @@ module.exports.regesterUser = function(req , res){
 
         let {userName ,  email ,  password} = req.body ;
 
-        // console.log(email); 
-
         // CHECKING IF THE USER EXIST
         User.findOne({email: email} , function(err , user){
 
@@ -62,19 +60,12 @@ module.exports.regesterUser = function(req , res){
             }
             else{
 
-                // Create an avatar
-                // let avatar = gravatar.url(email , {
-                //     s: '200',
-                //     r:'pg',
-                //     d:'mm'
-                // })
-
                 // Create a User
                 user = new User({
                     userName , 
                     email , 
                     password 
-                    // avatar
+                    
                 });
 
 

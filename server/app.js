@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const path = require('path')
 const Keys = require('./Config/keys')
 const auth = require('./Middelware/auth')
 const  cors = require('cors')
@@ -21,6 +22,9 @@ db.on('open' , function(){
 
 })
 
+// Serve Static Files:
+app.use(express.static(path.join(__dirname, 'public/')))
+
 
 // body-parser :
 app.use(bodyParser.json({
@@ -36,6 +40,7 @@ app.use(cors())
 app.use('/auth' , require('./Routes/user'));
 app.use('/home'  , auth  , require('./Routes/home')); 
 app.use('/album' , auth  , require('./Routes/album')); 
+app.use('/search' , auth , require('./Routes/search'))
 
 
 

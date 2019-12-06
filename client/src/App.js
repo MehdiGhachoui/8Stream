@@ -14,9 +14,9 @@ if (localStorage.token) {
 export default class App extends Component {
 
 
-  componentDidMount(){
-    dispatch(loadUser())
-  }
+  // componentDidMount(){
+  //   dispatch(loadUser())
+  // }
 
   render(){
       return (
