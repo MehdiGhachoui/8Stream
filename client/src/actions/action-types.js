@@ -10,5 +10,11 @@ export const GET_ONE_ALBUM    = "GET_ONE_ALBUM"
 export const GET_SEARCH       = "GET_SEARCH"
 export const SEARCH_FAILED    = "SEARCH_FAILED"
 export const ALBUM_ERROR      = "ALBUM_ERROR"
-
+export const CREATE_PLAYLIST  = "CREATE_PLAYLIST"
+export const GET_PLAYLIST     = "GET_PLAYLIST"
+export const GET_ONE_PLAYLIST = "GET_ONE_PLAYLIST"
+export const REMOVE_PLAYLIST  = "REMOVE_PLAYLIST"
+export const PLAYLIST_ERROR   = "PLAYLIST_ERROR"
+export const ADD_TO_PLAYLIST  = "ADD_TO_PLAYLIST"
+export const ADD_ERROR        = "ADD_ERROR"
 

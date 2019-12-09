@@ -68,9 +68,9 @@ class Signin extends Component {
 
                             <h2>Login to your account</h2>
 
-                            <input id="email" name="email" type="email" onChange = {this.handleChange} placeholder="Email"  required/>
+                            <input id="email" name="email" type="email"  onChange = {this.handleChange} placeholder="Email"  required/>
 
-                            <input id="password" name="password" onChange = {this.handleChange} type="password" placeholder="Password" required/>
+                            <input id="password" name="password" min="8"  onChange = {this.handleChange} type="password" placeholder="Password" required/>
                             
                             <button type="submit" name="loginButton">LOG IN</button>
                         </form>

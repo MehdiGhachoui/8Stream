@@ -1,5 +1,4 @@
 const Album = require('../Models/Album');
-const Artist = require('../Models/Artist');
 const Song   = require('../Models/Song')
 
 
@@ -11,8 +10,7 @@ module.exports.getAlbums = async  function(req , res) {
         if (err) return res.status(400).json({errors : err});
         else return res.status(200).json(data);
         
-    }).populate({path :'artist' , select  : ' ', model: Artist })
-      .populate({path :'song'   , select  : ' ', model: Song } )
+    }).populate({path :'song'   , select  : ' ', model: Song } )
 
 }
 
@@ -24,7 +22,6 @@ module.exports.albumInfo = function(req , res){
         else return res.status(200).json(data);
 
     }).populate({path :'song'   , select  : ' ', model: Song } )
-      .populate({path :'artist' , select  : ' ', model: Artist })
 
 }
 

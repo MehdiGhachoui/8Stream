@@ -45,3 +45,10 @@ input:focus {
     white-space: nowrap;
 }
 
+.gridViewItem .gridViewInfo .albumLink {
+
+    color : aliceblue ; 
+    text-decoration: none;
+
+
+}

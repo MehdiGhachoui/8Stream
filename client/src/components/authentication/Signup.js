@@ -61,13 +61,13 @@ class Signup extends Component {
 
                             <h2>Create your free account</h2>
 
-                            <input id="username" name="userName" type="text" onChange = {this.handleChange} placeholder="Username"  required/>
+                            <input id="username" name="userName" type="text"   onChange = {this.handleChange} placeholder="Username"  required/>
 
-                            <input id="email" name="email" type="email" onChange = {this.handleChange} placeholder="Email"  required/>
+                            <input id="email" name="email" type="email"   onChange = {this.handleChange} placeholder="Email"  required/>
 
-                            <input id="password" name="password" type="password" onChange = {this.handleChange} placeholder="Password" required/>
+                            <input id="password" name="password" type="password" min="8"  onChange = {this.handleChange} placeholder="Password" required/>
 
-                            <input id="password2" name="password2" type="password"  onChange = {this.handleChange}placeholder="Confirm password" required/>
+                            <input id="password2" name="password2" type="password" min="8"  onChange = {this.handleChange}placeholder="Confirm password" required/>
 
                             <button type="submit" name="registerButton" >SIGN UP</button>
 

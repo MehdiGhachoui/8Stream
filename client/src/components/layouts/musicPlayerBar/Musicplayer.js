@@ -16,11 +16,11 @@ export default class Musicplayer extends Component{
 
             <div id = 'nowPlayingBarContainer' >
                <div id = 'nowPlayingBar'>
+
                    <Left/>
                    <Center/>
                    <Right/>
                    
-
                 </div> 
 
             </div>

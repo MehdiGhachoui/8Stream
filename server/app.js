@@ -40,6 +40,7 @@ app.use(cors())
 app.use('/auth' , require('./Routes/user'));
 app.use('/home'  , auth  , require('./Routes/home')); 
 app.use('/album' , auth  , require('./Routes/album')); 
+app.use('/playlist'  , require('./Routes/playlist'))
 app.use('/search' , auth , require('./Routes/search'))
 
 

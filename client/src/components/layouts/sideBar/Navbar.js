@@ -39,7 +39,7 @@ export default class Navbar extends Component {
 						</div>
 
 						<div className="navItem">
-							<NavLink to="/yourMusic"  activeStyle={{ color:'white' }} className="navItemLink">Your Music</NavLink>
+							<NavLink to="/playlist"  activeStyle={{ color:'white' }} className="navItemLink">Your Music</NavLink>
 						</div>
 
 						<div className="navItem">

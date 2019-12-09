@@ -14,8 +14,8 @@ import "./Search.css"
 
 export default class Dashboard extends Component{
 
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
 
         this.state = {
 
@@ -97,7 +97,7 @@ export default class Dashboard extends Component{
 
                                                     <div className ="gridViewInfo" >
 
-                                                        <Link to = {`/album/${this.state.album._id}`} >{this.state.album.title}</Link>
+                                                        <Link to = {`/album/${this.state.album._id}`} className="albumLink" >{this.state.album.title}</Link>
 
                                                     </div>
 

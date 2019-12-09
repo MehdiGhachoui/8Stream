@@ -15,6 +15,8 @@ export const loadUser = () =>async dispatch =>{
     try {
         let res = await axios.get('http://localhost:4000/auth');
 
+        console.log(res)
+
         dispatch({
             type : USER_LOADED , 
             payload : res.data

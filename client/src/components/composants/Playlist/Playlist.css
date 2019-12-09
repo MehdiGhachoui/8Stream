@@ -1,0 +1,24 @@
+.buttonItems .button {
+    display: block;
+    margin: 0 auto 90px auto;
+    background-color: #1db954;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 18px 48px 16px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border-width: 0;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+}
+ 
+.gridViewItem .gridViewInfo .playlistLink {
+
+    color : aliceblue ; 
+    text-decoration: none;
+
+
+}

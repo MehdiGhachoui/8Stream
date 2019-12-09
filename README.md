@@ -1,10 +1,22 @@
-# M. Stream
+# 8Stream
 
-A Music  streaming  website similar to Spotify
+A Music  streaming  website based on Spotify written in javascript
+
+
+The objective of this project is learning 
 
 ## Built With
 
-Node.js
-Express
-MongoDb
-React.js
+* Node.js
+* Express.js
+* MongoDB
+* React.js
+* Redux
+
+
+
+
+
+
+
+
